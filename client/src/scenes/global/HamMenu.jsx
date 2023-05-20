@@ -1,5 +1,13 @@
-import React from "react";
-import { Box, IconButton, Typography, Badge } from "@mui/material";
+import React, { useState } from "react";
+import {
+  Box,
+  IconButton,
+  Typography,
+  Badge,
+  Menu,
+  MenuItem,
+  Button,
+} from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import CloseIcon from "@mui/icons-material/Close";
 import { setIsMenuOpen, setIsCartOpen } from "../../state/index";
@@ -11,6 +19,15 @@ const HamMenu = () => {
   const navigate = useNavigate();
   const cart = useSelector((state) => state.cart.cart);
   const isMenuOpen = useSelector((state) => state.cart.isMenuOpen);
+
+  const [anchorEl, setAnchorEl] = useState(null);
+  const handleClick = (e) => {
+    setAnchorEl(e.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     //overlay
     <Box
@@ -67,20 +84,24 @@ const HamMenu = () => {
           >
             HOME
           </Typography>
-          <Typography
-            sx={{
-              cursor: "pointer",
-            }}
-            color={shades.primary[300]}
-            fontSize="30px"
-            fontWeight="bold"
+          <Button
+            aria-controls="product-menu"
             onClick={() => {
-              navigate("/");
-              dispatch(setIsMenuOpen({}));
+              handleClick;
+              // dispatch(setIsMenuOpen({}));
             }}
           >
-            SHOP
-          </Typography>
+            <Typography
+              sx={{
+                cursor: "pointer",
+              }}
+              color={shades.primary[300]}
+              fontSize="30px"
+              fontWeight="bold"
+            >
+              SHOP
+            </Typography>
+          </Button>
           <Box display="flex">
             <Typography
               sx={{
@@ -132,6 +153,17 @@ const HamMenu = () => {
           </Typography>
         </Box>
       </Box>
+      <Menu
+        id="product-menu"
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        <MenuItem onClick={() => navigate("/all")}>ALL</MenuItem>
+        <MenuItem onClick={() => navigate("/tees")}>TEES</MenuItem>
+        <MenuItem onClick={() => navigate("/hoodies")}>HOODIES</MenuItem>
+        <MenuItem onClick={() => navigate("/lowers")}>JOGGERS</MenuItem>
+      </Menu>
     </Box>
   );
 };

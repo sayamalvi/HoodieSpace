@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   isCartOpen: false,
   isMenuOpen: false,
+  // isShopMenuOpen: false,
   cart: [],
   items: [],
 };
@@ -42,12 +43,16 @@ export const cartSlice = createSlice({
     setIsMenuOpen: (state) => {
       state.isMenuOpen = !state.isMenuOpen;
     },
+    // setIsShopMenuOpen: (state) => {
+    //   state.isShopMenuOpen = !state.isShopMenuOpen;
+    // },
   },
 });
 
 export const {
   setIsCartOpen,
   setIsMenuOpen,
+  // setIsShopMenuOpen,
   setItems,
   addToCart,
   removeFromCart,

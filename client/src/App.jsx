@@ -12,6 +12,11 @@ import CartMenu from "./scenes/global/CartMenu";
 import HamMenu from "./scenes/global/HamMenu";
 import Footer from "./scenes/global/Footer";
 import Login from "./scenes/global/Login";
+
+import AllProducts from "./components/AllProducts";
+import Hoodies from "./components/Hoodies";
+import Tees from "./components/Tees";
+import Lowers from "./components/Lowers";
 //whenever path changes scroll to top of the page
 const ScrollToTop = () => {
   // pathname represents current url path of the page
@@ -37,6 +42,10 @@ function App() {
           <Route path="checkout" element={<Checkout />} />
           <Route path="checkout/success" element={<Confirmation />} />
           <Route path="login" element={<Login />} />
+          <Route path="all" element={<AllProducts />} />
+          <Route path="tees" element={<Tees />} />
+          <Route path="hoodies" element={<Hoodies />} />
+          <Route path="lowers" element={<Lowers />} />
         </Routes>
         <HamMenu />
         <CartMenu />

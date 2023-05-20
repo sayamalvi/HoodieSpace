@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   Badge,
@@ -6,6 +6,9 @@ import {
   IconButton,
   Typography,
   useMediaQuery,
+  Menu,
+  MenuItem,
+  Button,
 } from "@mui/material";
 import {
   PersonOutline,
@@ -18,10 +21,18 @@ import { setIsCartOpen, setIsMenuOpen } from "../../state";
 import logo from "../../../public/logo.jpg";
 
 const Navbar = () => {
+  const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.cart);
   const isNotMobile = useMediaQuery("(min-width:600px)");
+
+  const handleClick = (e) => {
+    setAnchorEl(e.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
     <Box
@@ -85,24 +96,27 @@ const Navbar = () => {
           columnGap={isNotMobile ? "20px" : "2px"}
           zIndex="2"
         >
-          <Typography
-            fontWeight="bold"
-            onClick={() => navigate("/")}
-            sx={{
-              cursor: "pointer",
-            }}
-          >
-            HOME
-          </Typography>
-          <Typography
-            fontWeight="bold"
-            onClick={() => navigate("/")}
-            sx={{
-              cursor: "pointer",
-            }}
-          >
-            SHOP
-          </Typography>
+          <Button>
+            <Typography
+              fontWeight="bold"
+              onClick={() => navigate("/")}
+              sx={{
+                cursor: "pointer",
+              }}
+            >
+              HOME
+            </Typography>
+          </Button>
+          <Button aria-controls="product-menu" onClick={handleClick}>
+            <Typography
+              fontWeight="bold"
+              sx={{
+                cursor: "pointer",
+              }}
+            >
+              SHOP
+            </Typography>
+          </Button>
           <IconButton sx={{ color: "black" }}>
             <PersonOutline />
           </IconButton>
@@ -129,6 +143,45 @@ const Navbar = () => {
           </Badge>
         </Box>
       </Box>
+      <Menu
+        id="product-menu"
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        <MenuItem
+          onClick={() => {
+            navigate("/all");
+            handleClose();
+          }}
+        >
+          ALL
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            navigate("/tees");
+            handleClose();
+          }}
+        >
+          TEES
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            navigate("/hoodies");
+            handleClose();
+          }}
+        >
+          HOODIES
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            navigate("/lowers");
+            handleClose();
+          }}
+        >
+          JOGGERS
+        </MenuItem>
+      </Menu>
     </Box>
   );
 };

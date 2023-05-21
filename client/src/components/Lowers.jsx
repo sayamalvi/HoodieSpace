@@ -9,7 +9,7 @@ const Lowers = () => {
   const items = useSelector((state) => state.cart.items);
   const lowers = items.filter((item) => item.attributes.category === "lowers");
   async function getItems() {
-    const items = await fetch("http://localhost:1337/api/items?populate=*", {
+    const items = await fetch("http://localhost:1337/api/items?populate=*&pagination[start]=0&pagination[limit]=-1", {
       method: "GET",
     });
     const itemsJSON = await items.json();

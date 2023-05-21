@@ -10,9 +10,12 @@ const Tees = () => {
     (item) => item.attributes.category === "tshirts"
   );
   async function getItems() {
-    const items = await fetch("http://localhost:1337/api/items?populate=*", {
-      method: "GET",
-    });
+    const items = await fetch(
+      "http://localhost:1337/api/items?populate=*&pagination[start]=0&pagination[limit]=-1",
+      {
+        method: "GET",
+      }
+    );
     const itemsJSON = await items.json();
 
     dispatch(setItems(itemsJSON.data));

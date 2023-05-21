@@ -8,7 +8,7 @@ const AllProducts = () => {
   const dispatch = useDispatch();
   const items = useSelector((state) => state.cart.items);
   async function getItems() {
-    const items = await fetch("http://localhost:1337/api/items?populate=*", {
+    const items = await fetch("http://localhost:1337/api/items?populate=*&pagination[start]=0&pagination[limit]=-1", {
       method: "GET",
     });
     const itemsJSON = await items.json();

@@ -61,7 +61,7 @@ const ItemDetails = () => {
         <Box flex="1 1 50%" mb="10px">
           <Box m="65px 0 25px 0">
             <Typography variant="h3">{item?.attributes?.name}</Typography>
-            <Typography>{item?.attributes?.price}</Typography>
+            <Typography>Rs. {item?.attributes?.price}</Typography>
             <Typography>{item?.attributes?.longDescription}</Typography>
           </Box>
           <Box display="flex" alignItems="center" minHeight="50px">
@@ -87,18 +87,14 @@ const ItemDetails = () => {
                 borderRadius: "0",
                 minWidth: "150px",
                 padding: "10px 40px",
+                "&:hover": {
+                  backgroundColor: shades.primary[300],
+                },
               }}
               onClick={() => dispatch(addToCart({ item: { ...item, count } }))}
             >
               ADD TO CART
             </Button>
-          </Box>
-          <Box>
-            <Box m="20px 0 5px 0" display="flex">
-              <FavoriteBorderOutlinedIcon />
-              <Typography>ADD TO WISHLIST</Typography>
-            </Box>
-            <Typography>CATEGORIES:{item?.attributes?.category}</Typography>
           </Box>
         </Box>
       </Box>

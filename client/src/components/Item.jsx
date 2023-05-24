@@ -17,8 +17,7 @@ const Item = ({ item, width }) => {
   } = useTheme();
 
   const { category, price, name, image } = item?.attributes;
-  const url = image?.data?.attributes?.formats?.medium?.url;
-
+  const url = image?.data?.attributes?.url;
   return (
     <Box width={width}>
       <Box
@@ -38,6 +37,7 @@ const Item = ({ item, width }) => {
             cursor: "pointer",
           }}
         />
+        {/* {console.log(url)} */}
         <Box
           display={hovered ? "block" : "none"}
           position="absolute"

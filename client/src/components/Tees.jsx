@@ -11,7 +11,7 @@ const Tees = () => {
   );
   async function getItems() {
     const items = await fetch(
-      "http://localhost:1337/api/items?populate=*&pagination[start]=0&pagination[limit]=-1",
+      "http://localhost:1337/api/items?populate=image&pagination[start]=0&pagination[limit]=-1",
       {
         method: "GET",
       }

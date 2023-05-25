@@ -15,17 +15,18 @@ import { shades } from "../../theme";
 import { useNavigate } from "react-router-dom";
 
 const HamMenu = () => {
+  const [anchorEl, setAnchorEl] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const cart = useSelector((state) => state.cart.cart);
   const isMenuOpen = useSelector((state) => state.cart.isMenuOpen);
 
-  const [anchorEl, setAnchorEl] = useState(null);
   const handleClick = (e) => {
     setAnchorEl(e.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
+    dispatch(setIsMenuOpen({}));
   };
 
   return (
@@ -84,13 +85,7 @@ const HamMenu = () => {
           >
             HOME
           </Typography>
-          <Button
-            aria-controls="product-menu"
-            onClick={() => {
-              handleClick;
-              // dispatch(setIsMenuOpen({}));
-            }}
-          >
+          <Button aria-controls="product-menu" onClick={handleClick}>
             <Typography
               sx={{
                 cursor: "pointer",
@@ -159,10 +154,38 @@ const HamMenu = () => {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={() => navigate("/all")}>ALL</MenuItem>
-        <MenuItem onClick={() => navigate("/tees")}>TEES</MenuItem>
-        <MenuItem onClick={() => navigate("/hoodies")}>HOODIES</MenuItem>
-        <MenuItem onClick={() => navigate("/lowers")}>JOGGERS</MenuItem>
+        <MenuItem
+          onClick={() => {
+            navigate("/all");
+            handleClose();
+          }}
+        >
+          ALL
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            navigate("/tees");
+            handleClose();
+          }}
+        >
+          TEES
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            navigate("/hoodies");
+            handleClose();
+          }}
+        >
+          HOODIES
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            navigate("/lowers");
+            handleClose();
+          }}
+        >
+          JOGGERS
+        </MenuItem>
       </Menu>
     </Box>
   );

@@ -10,7 +10,6 @@ const ShoppingList = () => {
   const [randomItems, setRandomItems] = useState(new Set());
 
   async function getItems() {
-    const perPage = 44;
     const items = await fetch(
       `http://localhost:1337/api/items?populate=image&pagination[start]=0&pagination[limit]=-1`,
       {

@@ -26,7 +26,6 @@ const HamMenu = () => {
   };
   const handleClose = () => {
     setAnchorEl(null);
-    dispatch(setIsMenuOpen({}));
   };
 
   return (
@@ -158,6 +157,7 @@ const HamMenu = () => {
           onClick={() => {
             navigate("/all");
             handleClose();
+            dispatch(setIsMenuOpen({}));
           }}
         >
           ALL
@@ -166,6 +166,7 @@ const HamMenu = () => {
           onClick={() => {
             navigate("/tees");
             handleClose();
+            dispatch(setIsMenuOpen({}));
           }}
         >
           TEES
@@ -174,6 +175,7 @@ const HamMenu = () => {
           onClick={() => {
             navigate("/hoodies");
             handleClose();
+            dispatch(setIsMenuOpen({}));
           }}
         >
           HOODIES
@@ -182,6 +184,7 @@ const HamMenu = () => {
           onClick={() => {
             navigate("/lowers");
             handleClose();
+            dispatch(setIsMenuOpen({}));
           }}
         >
           JOGGERS

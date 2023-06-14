@@ -10,7 +10,11 @@ import {
 } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import CloseIcon from "@mui/icons-material/Close";
-import { setIsMenuOpen, setIsCartOpen } from "../../state/index";
+import {
+  setIsMenuOpen,
+  setIsCartOpen,
+  setIsLoginModalOpen,
+} from "../../state/index";
 import { shades } from "../../theme";
 import { useNavigate } from "react-router-dom";
 
@@ -20,7 +24,7 @@ const HamMenu = () => {
   const navigate = useNavigate();
   const cart = useSelector((state) => state.cart.cart);
   const isMenuOpen = useSelector((state) => state.cart.isMenuOpen);
-
+  const isLoginModalOpen = useSelector((state) => state.cart.isLoginModalOpen);
   const handleClick = (e) => {
     setAnchorEl(e.currentTarget);
   };
@@ -139,7 +143,7 @@ const HamMenu = () => {
             fontSize="30px"
             fontWeight="bold"
             onClick={() => {
-              navigate("/login");
+              dispatch(setIsLoginModalOpen({}));
               dispatch(setIsMenuOpen({}));
             }}
           >

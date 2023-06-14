@@ -17,7 +17,7 @@ import {
 } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { shades } from "../../theme";
-import { setIsCartOpen, setIsMenuOpen } from "../../state";
+import { setIsCartOpen, setIsMenuOpen, setIsLoginModalOpen } from "../../state";
 import logo from "../../../public/logo.jpg";
 
 const Navbar = () => {
@@ -117,7 +117,10 @@ const Navbar = () => {
               SHOP
             </Typography>
           </Button>
-          <IconButton sx={{ color: "black" }}>
+          <IconButton
+            sx={{ color: "black" }}
+            onClick={() => dispatch(setIsLoginModalOpen({}))}
+          >
             <PersonOutline />
           </IconButton>
           <Badge

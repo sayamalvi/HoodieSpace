@@ -49,6 +49,7 @@ function App() {
         </Routes>
         <HamMenu />
         <CartMenu />
+        <Login />
         <Footer />
       </BrowserRouter>
     </div>
